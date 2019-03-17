@@ -10,11 +10,16 @@ https://forums.eagle.ru/showthread.php?t=121659
 
 Enhancements done: 
 
-*IR light signal at 3km
-*Pilot Can be moved with Combined Arms
-*Life raft if accident happens on water
-*Csar pickup even if pilot is dead.
-* If helicopter lands, upto 500 mts away from downed pilot, this one will run to get in. Time is relative to the distance whe the extraction helicopter lands
+* IR light signal at 3km
+
+* Pilot Can be moved with Combined Arms
+
+* Life raft if crash happens on water
+
+* Csar pickup even if pilot is dead.
+
+*   If helicopter lands, upto 500 mts away from downed pilot, 
+    this one will run to get in. Time is relative to the distance whe the extraction helicopter lands
 * Ground Unit Pickup - Any ground unit can pick up downed pilots (Combined arms)
 
 [![](http://img.youtube.com/vi/Q6cVd703-o8/0.jpg)](http://www.youtube.com/watch?v=Q6cVd703-o8 "BSD-CSAR")
