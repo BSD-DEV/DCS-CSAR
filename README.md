@@ -1,5 +1,29 @@
 # DCS-CSAR
 
+CSAR enhancements:
+
+Mods required:  
+https://forums.eagle.ru/showthread.php?t=229788
+https://forums.eagle.ru/showthread.php?t=121659
+
+Enhancements done: 
+
+*IR light signal at 3km
+*Pilot Can be moved with Combined Arms
+*Life raft if accident happens on water
+*Csar pickup even if pilot is dead.
+* If helicopter lands, upto 500 mts away from downed pilot, this one will run to get in. Time is relative to the distance whe the extraction helicopter lands
+* Ground Unit Pickup - Any ground unit can pick up downed pilots (Combined arms)
+
+https://youtu.be/Q6cVd703-o8
+
+
+https://youtu.be/fn_64MTYGk0
+
+
+[BSD] Tupper, [BSD]Fargo.
+
+
 Simplified MEDEVAC script specifically for pilot rescue simulating Combat Search and Rescue (CSAR)
 
 By default, any crashed plane with an ejected pilot will be disabled until the pilot is rescued and dropped back safely to a friendly MASH, Airfield or FARP
