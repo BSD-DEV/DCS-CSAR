@@ -1,5 +1,5 @@
 -- CSAR Script for DCS Ciribob - 2015
--- Version 1.9.2 - 23/04/2018
+-- Version 1.9.1 - 12/05/2016
 -- DCS 1.5 Compatible - Needs Mist 4.0.55 or higher!
 --
 -- 4 Options:
@@ -8,11 +8,145 @@
 --      2 - Disable Aircraft for Pilot when he's shot down -- timeout to reenable pilot for aircraft
 --      3 - Pilot Life Limit - No Aircraft Disabling 
 
+  -- SET bsd_mods_on = true  in ME 
+ local _IR_signal = {}
+
 csar = {}
 
 -- SETTINGS FOR MISSION DESIGNER vvvvvvvvvvvvvvvvvv
 csar.csarUnits = {
-    "helicargo1",
+	"helo1",
+	 'helo2',
+  'helo3',
+  'helo4',
+  'helo5',
+  'helo6',
+  'helo7',
+  'helo8',
+  'helo9',
+  'helo10',
+  'helo11',
+  'helo12',
+  'helo13',
+  'helo14',
+  'helo15',
+  'helo16',
+  'helo17',
+  'helo18',
+  'helo19',
+  'helo20',
+  'helo21',
+'helo22',
+'helo23',
+'helo24',
+'helo25',
+'helo26',
+'helo27',
+'helo28',
+'helo29',
+'helo30',
+'helo31',
+'helo32',
+'helo33',
+'helo34',
+'helo35',
+'helo36',
+'helo37',
+'helo38',
+'helo39',
+'helo40',
+'helo41',
+'helo42',
+'helo43',
+'helo44',
+'helo45',
+'helo46',
+'helo47',
+'helo48',
+'helo49',
+'helo50',
+'helo51',
+'helo52',
+'helo53',
+'helo54',
+'helo55',
+'helo56',
+'helo57',
+'helo58',
+'helo59',
+'helo60',
+'helo61',
+'helo62',
+'helo63',
+'helo64',
+'helo65',
+'helo66',
+'helo67',
+'helo68',
+'helo69',
+'helo70',
+'helo71',
+'helo72',
+'helo73',
+'helo74',
+'helo75',
+'helo76',
+'helo77',
+'helo78',
+'helo79',
+'helo80',
+'helo81',
+'helo82',
+'helo83',
+'helo84',
+'helo85',
+'helo86',
+'helo87',
+'helo88',
+'helo89',
+'helo90',
+'helo91',
+'helo92',
+'helo93',
+'helo94',
+'helo95',
+'helo96',
+'helo97',
+'helo98',
+'helo99',
+'helo100',
+'helo101',
+'helo102',
+'helo103',
+'helo104',
+'helo105',
+'helo106',
+'helo107',
+'helo108',
+'helo109',
+'helo110',
+'helo111',
+'helo112',
+'helo113',
+'helo114',
+'helo115',
+'helo116',
+'helo117',
+'helo118',
+'helo119',
+'helo120',
+'helo121',
+'helo122',
+'helo123',
+'helo124',
+'helo125',
+'helo126',
+'helo127',
+'helo128',
+'helo129',
+'helo130',
+
+  "helicargo1",
     "helicargo2",
     "helicargo3",
     "helicargo4",
@@ -39,6 +173,64 @@ csar.csarUnits = {
     "helicargo23",
     "helicargo24",
     "helicargo25",
+    "helicargo26",
+    "helicargo27",
+    "helicargo28",
+    "helicargo29",
+    "helicargo30",
+    "helicargo31",
+    "helicargo32",
+    "helicargo33",
+    "helicargo34",
+    "helicargo35",
+    "helicargo36",
+    "helicargo37",
+    "helicargo38",
+    "helicargo39",
+    "helicargo40",
+    "helicargo41",
+    "helicargo42",
+    "helicargo43",
+    "helicargo44",
+    "helicargo45",
+    "helicargo46",
+    "helicargo47",
+    "helicargo48",
+    "helicargo49",
+    "helicargo50",
+    "helicargo50",
+    "helicargo51",
+    "helicargo52",
+    "helicargo53",
+    "helicargo54",
+    "helicargo55",
+    "helicargo56",
+    "helicargo57",
+    "helicargo58",
+    "helicargo59",
+    "helicargo60",
+
+    "harrier1",
+    "harrier2",
+    "harrier3",
+    "harrier4",
+    "harrier5",
+    "harrier6",
+    "harrier7",
+	"harrier8",
+	
+
+    "mirage1",
+    "mirage2",
+
+    "tanker",
+    "viggen1",
+
+
+    "victim1",
+    "victim2",
+    "victim3",
+
 
     "MEDEVAC #1",
     "MEDEVAC #2",
@@ -99,13 +291,14 @@ csar.csarUnits = {
     "MEDEVAC BLUE #18",
     "MEDEVAC BLUE #19",
     "MEDEVAC BLUE #20",
-    "MEDEVAC BLUE #21",
+    "MEDEVAC BLUE #21"
 } -- List of all the MEDEVAC _UNIT NAMES_ (the line where it says "Pilot" in the ME)!
 
 csar.bluemash = {
-    "BlueMASH #1",
-    "BlueMASH #2",
-    "BlueMASH #3",
+    "FARP1",
+    "vinson",
+    "tarawa",
+    "mistral",
     "BlueMASH #4",
     "BlueMASH #5",
     "BlueMASH #6",
@@ -129,7 +322,7 @@ csar.redmash = {
 } -- The unit that serves as MASH for the red side
 
 
-csar.csarMode = 0
+csar.csarMode =0
 
 --      0 - No Limit - NO Aircraft disabling
 --      1 - Disable Aircraft when its down - Timeout to reenable aircraft
@@ -138,20 +331,20 @@ csar.csarMode = 0
 
 csar.maxLives = 8 -- Maximum pilot lives
 
-csar.countCSARCrash = false -- If you set to true, pilot lives count for CSAR and CSAR aircraft will count.
+csar.countCSARCrash = true -- If you set to true, pilot lives count for CSAR and CSAR aircraft will count.
 
 csar.reenableIfCSARCrashes = true -- If a CSAR heli crashes, the pilots are counted as rescued anyway. Set to false to Stop this
 
 -- - I recommend you leave the option on below IF USING MODE 1 otherwise the
 -- aircraft will be disabled for the duration of the mission
 csar.disableAircraftTimeout = true -- Allow aircraft to be used after 20 minutes if the pilot isnt rescued
-csar.disableTimeoutTime = 20 -- Time in minutes for TIMEOUT
+csar.disableTimeoutTime = 5 -- Time in minutes for TIMEOUT
 
 csar.destructionHeight = 150 -- height in meters an aircraft will be destroyed at if the aircraft is disabled
 
-csar.enableForAI = false -- set to false to disable AI units from being rescued.
+csar.enableForAI = true -- set to false to disable AI units from being rescued.
 
-csar.enableForRED = true -- enable for red side
+csar.enableForRED = false -- enable for red side
 
 csar.enableForBLUE = true -- enable for blue side
 
@@ -164,20 +357,37 @@ csar.redsmokecolor = 1 -- Color of smokemarker for red side, 0 is green, 1 is re
 
 csar.requestdelay = 2 -- Time in seconds before the survivors will request Medevac
 
-csar.coordtype = 3 -- Use Lat/Long DDM (0), Lat/Long DMS (1), MGRS (2), Bullseye imperial (3) or Bullseye metric (4) for coordinates.
+csar.coordtype = 2 -- Use Lat/Long DDM (0), Lat/Long DMS (1), MGRS (2), Bullseye imperial (3) or Bullseye metric (4) for coordinates.
 csar.coordaccuracy = 1 -- Precision of the reported coordinates, see MIST-docs at http://wiki.hoggit.us/view/GetMGRSString
 -- only applies to _non_ bullseye coords
 
 csar.immortalcrew = true -- Set to true to make wounded crew immortal
-csar.invisiblecrew = true -- Set to true to make wounded crew insvisible
+csar.invisiblecrew = false -- Set to true to make wounded crew insvisible
 
 csar.messageTime = 30 -- Time to show the intial wounded message for in seconds
 
-csar.loadDistance = 60 -- configure distance for pilot to get in helicopter in meters.
+csar.loadDistance = 500 -- configure distance for pilot to get in helicopter in meters.
 
 csar.radioSound = "beacon.ogg" -- the name of the sound file to use for the Pilot radio beacons. If this isnt added to the mission BEACONS WONT WORK!
 
 csar.allowFARPRescue = true --allows pilot to be rescued by landing at a FARP or Airbase
+
+csar.allowVehicleExtraction = true
+csar.Vehicle_ext_distance = 100
+
+csar.loadtimemax = 135
+
+csar.allowedVehicles = {}
+csar.allowedVehicles["M-1 Abrams"] = 1
+csar.allowedVehicles["M1045 HMMWV TOW"] = 1
+csar.allowedVehicles["M1043 HMMWV Armament"] = 1
+csar.allowedVehicles["Hummer"] = 1
+csar.allowedVehicles["Hummer Medic"] = 1
+csar.allowedVehicles["AAV7"] = 1
+
+
+
+
 
 -- SETTINGS FOR MISSION DESIGNER ^^^^^^^^^^^^^^^^^^^*
 
@@ -245,6 +455,9 @@ csar.currentlyDisabled = {} --stored disabled aircraft
 
 csar.hoverStatus = {} -- tracks status of a helis hover above a downed pilot
 
+--Tupper
+csar.landedStatus = {} -- tracks status of a helis hover above a downed pilot
+--Tupper End
 csar.pilotDisabled = {} -- tracks what aircraft a pilot is disabled for
 
 csar.pilotLives = {} -- tracks how many lives a pilot has
@@ -282,12 +495,12 @@ function csar.eventHandler:onEvent(_event)
             return false
 
         elseif _event.id == 3 then -- taken offf
-
-        if _event.initiator:getName() then
-            csar.takenOff[_event.initiator:getName()] = true
-        end
-
-        return true
+  
+          if _event.initiator:getName() then
+              csar.takenOff[_event.initiator:getName()] = true
+          end
+  
+          return true
         elseif _event.id == 15 then --player entered unit
 
         if _event.initiator:getName() then
@@ -296,8 +509,7 @@ function csar.eventHandler:onEvent(_event)
 
         -- if its a sar heli, re-add check status script
         for _, _heliName in pairs(csar.csarUnits) do
-
-            if _heliName == _event.initiator:getName() then
+           if _heliName == _event.initiator:getName()  then
                 -- add back the status script
                 for _woundedName, _groupInfo in pairs(csar.woundedGroups) do
 
@@ -342,19 +554,55 @@ function csar.eventHandler:onEvent(_event)
             end
 
             -- Catch multiple events here?
-            if csar.takenOff[_event.initiator:getName()] == true or _unit:inAir() then
+         --   if csar.takenOff[_event.initiator:getName()] == true or _unit:inAir() then
 
                 if csar.doubleEjection(_unit) then
                     return
                 end
+--tupper beg
+          --     trigger.action.outTextForCoalition(_unit:getCoalition(), "MAYDAY MAYDAY! " .. _unit:getTypeName() .. " shot down. No Chute!", 10)
+            --    csar.handleEjectOrCrash(_unit, true)
+            --tupper end
+                
+        --    else
+          --      env.info("Pilot Hasnt taken off, ignore")
+          --  end
+          --Tupper beg
+          local _spawnedGroup = csar.spawnGroup(_unit)
+            csar.addSpecialParametersToGroup(_spawnedGroup)
 
-                trigger.action.outTextForCoalition(_unit:getCoalition(), "MAYDAY MAYDAY! " .. _unit:getTypeName() .. " shot down. No Chute!", 10)
-                csar.handleEjectOrCrash(_unit, true)
+            trigger.action.outTextForCoalition(_unit:getCoalition(), "MAYDAY MAYDAY! " .. _unit:getTypeName() .. " is down. Get me home bro!", 10)
+
+            local _freq = csar.generateADFFrequency()
+            
+              --if csar.isonWater( _unit ) ~= true then
+                csar.addBeaconToGroup(_spawnedGroup:getName(), _freq)
+--              end
+            --handle lives and plane disabling
+            csar.handleEjectOrCrash(_unit, false)
+
+            -- Generate DESCRIPTION text
+            local _text = " "
+            if _unit:getPlayerName() ~= nil then
+                _text = "Pilot " .. _unit:getPlayerName() .. " of " .. _unit:getName() .. " - " .. _unit:getTypeName()
             else
-                env.info("Pilot Hasnt taken off, ignore")
+                _text = "AI Pilot of " .. _unit:getName() .. " - " .. _unit:getTypeName()
             end
 
-            return
+            csar.woundedGroups[_spawnedGroup:getName()] = { side = _spawnedGroup:getCoalition(), originalUnit = _unit:getName(), frequency = _freq, desc = _text, player = _unit:getPlayerName() }
+
+            csar.initSARForPilot(_spawnedGroup, _freq)
+            
+               if csar.allowVehicleExtraction then
+                
+                csar.initVehicleCheck( _spawnedGroup )
+            
+            end
+
+            return true
+          
+          --Tupper  end
+           -- return
 
         elseif world.event.S_EVENT_EJECTION == _event.id then
 
@@ -382,11 +630,11 @@ function csar.eventHandler:onEvent(_event)
 
                 return
             end
-
-            if csar.takenOff[_event.initiator:getName()] ~= true and not _unit:inAir() then
+--TUPPER WE NEED TO CHECK THE BELOW LOGIC, SINCE HUEYS EJECTS ON LAND...
+    --[[        if csar.takenOff[_event.initiator:getName()] ~= true and not _unit:inAir() then
                 env.info("Pilot Hasnt taken off, ignore")
                 return -- give up, pilot hasnt taken off
-            end
+            end ]]-- 
 
             if csar.doubleEjection(_unit) then
                 return
@@ -398,11 +646,14 @@ function csar.eventHandler:onEvent(_event)
             csar.addSpecialParametersToGroup(_spawnedGroup)
 
             trigger.action.outTextForCoalition(_unit:getCoalition(), "MAYDAY MAYDAY! " .. _unit:getTypeName() .. " shot down. Chute Spotted!", 10)
-
+            
+                        
             local _freq = csar.generateADFFrequency()
 
-            csar.addBeaconToGroup(_spawnedGroup:getName(), _freq)
-
+            
+             --if csar.isonWater( _unit ) ~= true then
+                csar.addBeaconToGroup(_spawnedGroup:getName(), _freq)
+              --end
             --handle lives and plane disabling
             csar.handleEjectOrCrash(_unit, false)
 
@@ -417,7 +668,13 @@ function csar.eventHandler:onEvent(_event)
             csar.woundedGroups[_spawnedGroup:getName()] = { side = _spawnedGroup:getCoalition(), originalUnit = _unit:getName(), frequency = _freq, desc = _text, player = _unit:getPlayerName() }
 
             csar.initSARForPilot(_spawnedGroup, _freq)
-
+            
+            if csar.allowVehicleExtraction then
+                
+                csar.initVehicleCheck( _spawnedGroup )
+            
+            end
+            
             return true
 
         elseif world.event.S_EVENT_LAND == _event.id then
@@ -459,6 +716,7 @@ function csar.eventHandler:onEvent(_event)
             end
 
             return true
+
         end
     end, _event)
     if (not status) then
@@ -473,7 +731,7 @@ function csar.doubleEjection(_unit)
     if csar.lastCrash[_unit:getName()] then
         local _time = csar.lastCrash[_unit:getName()]
 
-        if timer.getTime() - _time < 10 then
+        if timer.getTime() - _time < 20 then
             env.info("Caught double ejection!")
             return true
         end
@@ -797,6 +1055,28 @@ function csar.heightDiff(_unit)
     return _point.y - land.getHeight({ x = _point.x, y = _point.z })
 end
 
+function csar.isonWater( _unit)
+    
+    local _point = _unit:getPoint()
+    local vec2 = { x = _point.x, y = _point.z }
+    local surface = land.getSurfaceType(vec2)
+    
+    if surface == land.SurfaceType.WATER then
+        return true
+    else
+        return false
+    end    
+--enum surface types      
+  -- @type land.SurfaceType
+  -- @field LAND
+  -- @field SHALLOW_WATER
+  -- @field WATER
+  -- @field ROAD
+  -- @field RUNWAY
+  
+
+end
+
 csar.addBeaconToGroup = function(_woundedGroupName, _freq)
 
     local _group = Group.getByName(_woundedGroupName)
@@ -854,6 +1134,34 @@ csar.addSpecialParametersToGroup = function(_spawnedGroup)
     end
 end
 
+csar.addSpecialParametersToGroupDead = function(_spawnedGroup)
+
+    -- Immortal code for alexej21
+    local _setImmortal = {
+        id = 'SetImmortal',
+        params = {
+            value = true
+        }
+    }
+    -- invisible to AI, Shagrat
+    local _setInvisible = {
+        id = 'SetInvisible',
+        params = {
+            value = true
+        }
+    }
+
+    local _controller = _spawnedGroup:getController()
+
+  
+        Controller.setCommand(_controller, _setImmortal)
+  
+
+  
+        Controller.setCommand(_controller, _setInvisible)
+  
+end
+
 function csar.spawnGroup(_deadUnit)
 
     local _id = mist.getNextGroupId()
@@ -872,20 +1180,40 @@ function csar.spawnGroup(_deadUnit)
         ["name"] = _groupName,
         ["task"] = {},
     }
-
+    
+    _group.category = Group.Category.GROUND;
     if _side == 2 then
-        _group.units[1] = csar.createUnit(_pos.x + 50, _pos.z + 50, 120, "Soldier M4")
+        
+        if csar.isonWater(_deadUnit ) then
+
+            if bsd_mods_on == true then
+              _group.units[1] = csar.createUnit(_pos.x + 50, _pos.z + 50, 120, "liferaft Giz") --"speedboat" )
+            else
+              _group.units[1] = csar.createUnit(_pos.x + 50, _pos.z + 50, 120, "speedboat" )
+            end
+            _group.category = Group.Category.SHIP;
+        else 
+        if bsd_mods_on == true then
+            _group.units[1] = csar.createUnit(_pos.x + 50, _pos.z + 50, 120, "PilotMod")
+        else
+            _group.units[1] = csar.createUnit(_pos.x + 50, _pos.z + 50, 120, "Soldier M4")
+        end
+        end
+        
     else
+      if bsd_mods_on == true then
+        _group.units[1] = csar.createUnit(_pos.x + 50, _pos.z + 50, 120, "PilotMod")
+      else
         _group.units[1] = csar.createUnit(_pos.x + 50, _pos.z + 50, 120, "Infantry AK")
+        end
     end
 
-    _group.category = Group.Category.GROUND;
+    
     _group.country = _deadUnit:getCountry();
 
     local _spawnedGroup = Group.getByName(mist.dynAdd(_group).name)
-
     -- Turn off AI
-    trigger.action.setGroupAIOff(_spawnedGroup)
+ --   trigger.action.setGroupAIOff(_spawnedGroup)
 
     return _spawnedGroup
 end
@@ -903,13 +1231,16 @@ function csar.createUnit(_x, _y, _heading, _type)
         ["name"] = _name,
         ["unitId"] = _id,
         ["heading"] = _heading,
-        ["playerCanDrive"] = false,
+        ["playerCanDrive"] = true,
+        
         ["skill"] = "Excellent",
         ["x"] = _x,
     }
 
     return _newUnit
 end
+
+
 
 function csar.initSARForPilot(_downedGroup, _freq)
 
@@ -937,14 +1268,14 @@ function csar.initSARForPilot(_downedGroup, _freq)
 
             -- queue up for all SAR, alive or dead, we dont know the side if they're dead or not spawned so check
             --coalition in scheduled smoke
-
+            
             if _heli ~= nil then
-
+  
                 -- Check coalition side
                 if (_woundedSide == _heli:getCoalition()) then
                     -- Display a delayed message
                     timer.scheduleFunction(csar.delayedHelpMessage, { _unitName, _medevacText, _groupName }, timer.getTime() + csar.requestdelay)
-
+                    
                     -- Schedule timer to check when to pop smoke
                     timer.scheduleFunction(csar.checkWoundedGroupStatus, { _unitName, _groupName }, timer.getTime() + 1)
                 end
@@ -970,7 +1301,8 @@ function csar.checkWoundedGroupStatus(_argument)
 
         local _woundedGroup = csar.getWoundedGroup(_woundedGroupName)
         local _heliUnit = csar.getSARHeli(_heliName)
-
+        
+        
         -- if wounded group is not here then message alread been sent to SARs
         -- stop processing any further
         if csar.woundedGroups[_woundedGroupName] == nil then
@@ -990,14 +1322,16 @@ function csar.checkWoundedGroupStatus(_argument)
         if csar.woundedGroups[_woundedGroupName].side ~= _heliUnit:getCoalition() then
             return --wrong side!
         end
-
+        
+        
+        
         if csar.checkGroupNotKIA(_woundedGroup, _woundedGroupName, _heliUnit, _heliName) then
 
             local _woundedLeader = _woundedGroup[1]
             local _lookupKeyHeli = _heliUnit:getID() .. "_" .. _woundedLeader:getID() --lookup key for message state tracking
 
             local _distance = csar.getDistance(_heliUnit:getPoint(), _woundedLeader:getPoint())
-
+            
             if _distance < 3000 then
 
                 if csar.checkCloseWoundedGroup(_distance, _heliUnit, _heliName, _woundedGroup, _woundedGroupName) == true then
@@ -1031,10 +1365,56 @@ function csar.popSmokeForGroup(_woundedGroupName, _woundedLeader)
         else
             _smokecolor = csar.redsmokecolor
         end
-        trigger.action.smoke(_woundedLeader:getPoint(), _smokecolor)
+		-- fjw smoke off 
+		--    trigger.action.smoke(_woundedLeader:getPoint(), _smokecolor)
 
         csar.smokeMarkers[_woundedGroupName] = timer.getTime() + 300 -- next smoke time
     end
+end
+
+ function ir_Signal( _unit )    
+      
+      local _unitVector = _unit:getPoint()
+      local _unitVector = { x = _unitVector.x, y = _unitVector.y + 1.0, z = _unitVector.z }
+      local _unitVector2 = { x = _unitVector.x + 1 , y = _unitVector.y + 2.0, z = _unitVector.z }
+      local _unitname = _unit:getName()
+      
+  
+          -- create lase
+  
+          local _status, _result = pcall(function()
+              if _IR_signal[_unitname] ~= nil then
+                return
+              end
+              
+              _IR_signal[_unitname] = {}
+               _IR_signal[_unitname].spot = Spot.createInfraRed(_unit, { x = 1, y = 1.0, z = 0 }, _unitVector2)
+        
+              return _IR_signal
+          end)
+  
+          if not _status then
+              env.error('ERROR: ' .. _result, false)
+          else
+  
+          end
+
+          timer.scheduleFunction(ir_Signal_off, _unitname, timer.getTime() + 0.2)
+          timer.scheduleFunction(ir_Signal, _unit, timer.getTime() + 1)
+    end
+    
+function ir_Signal_off( _unitname )
+   
+    --local _unitname = _unit:getName()
+    local _tempLase = _IR_signal[_unitname].spot
+    
+    Spot.destroy(_tempLase)
+    
+    _IR_signal[_unitname].spot = nil
+          _IR_signal[_unitname] = nil
+          
+    
+
 end
 
 function csar.pickupUnit(_heliUnit, _pilotName, _woundedGroup, _woundedGroupName)
@@ -1096,36 +1476,58 @@ function csar.checkCloseWoundedGroup(_distance, _heliUnit, _heliName, _woundedGr
     local _reset = true
 
     csar.popSmokeForGroup(_woundedGroupName, _woundedLeader)
-
-    if csar.heliVisibleMessage[_lookupKeyHeli] == nil then
-
-        csar.displayMessageToSAR(_heliUnit, string.format("%s: %s. I hear you! Damn that thing is loud! Land or hover by the smoke.", _heliName, _pilotName), 30)
-
-        --mark as shown for THIS heli and THIS group
-        csar.heliVisibleMessage[_lookupKeyHeli] = true
+    ir_Signal( _woundedLeader )    
+    
+    if csar.inAir(_heliUnit) == true then
+      if csar.heliVisibleMessage[_lookupKeyHeli] == nil then
+              
+          csar.displayMessageToSAR(_heliUnit, string.format("%s: %s. I hear you! Damn that thing is loud!.", _heliName, _pilotName), 30)
+    
+          --mark as shown for THIS heli and THIS group
+          csar.heliVisibleMessage[_lookupKeyHeli] = true
+      end
     end
-
     if (_distance < 500) then
-
-        if csar.heliCloseMessage[_lookupKeyHeli] == nil then
-
-            csar.displayMessageToSAR(_heliUnit, string.format("%s: %s. You're close now! Land or hover at the smoke.", _heliName, _pilotName), 10)
-
-            --mark as shown for THIS heli and THIS group
-            csar.heliCloseMessage[_lookupKeyHeli] = true
+        if csar.inAir(_heliUnit) == true then       
+          if csar.heliCloseMessage[_lookupKeyHeli] == nil then
+  
+              csar.displayMessageToSAR(_heliUnit, string.format("%s: %s. You're close now!.", _heliName, _pilotName), 10)
+  
+              --mark as shown for THIS heli and THIS group
+              csar.heliCloseMessage[_lookupKeyHeli] = true
+          end
         end
-
         -- have we landed close enough?
         if csar.inAir(_heliUnit) == false then
 
             -- if you land on them, doesnt matter if they were heading to someone else as you're closer, you win! :)
             if (_distance < csar.loadDistance) then
 
-                return csar.pickupUnit(_heliUnit, _pilotName, _woundedGroup, _woundedGroupName)
+--Tupper
+                --return csar.pickupUnit(_heliUnit, _pilotName, _woundedGroup, _woundedGroupName)
+                local _time = csar.landedStatus[_lookupKeyHeli]
+                if _time == nil then
+                    --csar.displayMessageToSAR(_heliUnit, "Landed at " .. _distance, 10, true)
+                    csar.landedStatus[_lookupKeyHeli] = math.floor( (_distance * csar.loadtimemax ) / csar.loadDistance )   
+                    _time = csar.landedStatus[_lookupKeyHeli] 
+                    csar.orderGroupToMoveToPoint(_woundedLeader, _heliUnit:getPoint())
+                    
+                else
+                    _time = csar.landedStatus[_lookupKeyHeli] - 1
+                    csar.landedStatus[_lookupKeyHeli] = _time
+                end
+                  
+                 if _time > 0 then
+                            csar.displayMessageToSAR(_heliUnit, "Wait till " .. _pilotName .. ". Gets to the chopper \n\n" .. _time .. " more seconds to winch them up.", 10, true)
+                  else
+                            csar.landedStatus[_lookupKeyHeli] = nil
+                            return csar.pickupUnit(_heliUnit, _pilotName, _woundedGroup, _woundedGroupName)
+                 end
+-- Tupper                 
             end
 
         else
-
+            csar.landedStatus[_lookupKeyHeli] = nil
             local _unitsInHelicopter = csar.pilotsOnboard(_heliName)
 
             if csar.inAir(_heliUnit) and _unitsInHelicopter + 1 <= csar.max_units then
@@ -1135,7 +1537,7 @@ function csar.checkCloseWoundedGroup(_distance, _heliUnit, _heliName, _woundedGr
                     --check height!
                     local _height = _heliUnit:getPoint().y - _woundedLeader:getPoint().y
 
-                    if _height <= 20.0 then
+                    if _height <= 60.0 then
 
                         local _time = csar.hoverStatus[_lookupKeyHeli]
 
@@ -1167,6 +1569,39 @@ function csar.checkCloseWoundedGroup(_distance, _heliUnit, _heliName, _woundedGr
     end
 
     return true
+end
+
+function csar.orderGroupToMoveToPoint(_leader, _destination)
+
+    local _group = _leader:getGroup()
+
+    local _path = {}
+    table.insert(_path, mist.ground.buildWP(_leader:getPoint(), 'Off Road', 50))
+    table.insert(_path, mist.ground.buildWP(_destination, 'Off Road', 50))
+
+    local _mission = {
+        id = 'Mission',
+        params = {
+            route = {
+                points =_path
+            },
+        },
+    }
+
+
+    -- delayed 2 second to work around bug
+    timer.scheduleFunction(function(_arg)
+        local _grp = ctld.getAliveGroup(_arg[1])
+
+        if _grp ~= nil then
+            local _controller = _grp:getController();
+            Controller.setOption(_controller, AI.Option.Ground.id.ALARM_STATE, AI.Option.Ground.val.ALARM_STATE.GREEN)
+            Controller.setOption(_controller, AI.Option.Ground.id.ROE, AI.Option.Ground.val.ROE.WEAPON_HOLD)
+            _controller:setTask(_arg[2])
+        end
+    end
+        , {_group:getName(), _mission}, timer.getTime() + 2)
+
 end
 
 
@@ -1310,7 +1745,7 @@ function csar.getSARHeli(_unitName)
 
     local _heli = Unit.getByName(_unitName)
 
-    if _heli ~= nil and _heli:isActive() and _heli:getLife() > 0 then
+    if _heli ~= nil and _heli:isActive() and _heli:getLife() > 1 then
 
         return _heli
     end
@@ -1860,3 +2295,102 @@ if csar.enableSlotBlocking then
 
     env.info("CSAR Slot block enabled")
 end
+
+
+
+
+function csar.CheckNearbyVehicle(_Unit)
+
+    local _maxDistance =  csar.Vehicle_ext_distance
+
+    local _unitPoint = _Unit:getPoint()
+    local _coa =    _Unit:getCoalition()
+
+    local _offsetPos = { x = _unitPoint.x, y = _unitPoint.y + 2.0, z = _unitPoint.z }
+
+    local _volume = {
+        id = world.VolumeType.SPHERE,
+        params = {
+            point = _offsetPos,
+            radius = _maxDistance
+        }
+    }
+    
+    local _unitList = {}
+
+    local _searchfr = function(_unit, _coa)
+        pcall(function()
+
+            if _unit ~= nil
+                    and _unit:getLife() > 1
+                    and _unit:isActive()
+                    and _unit:getCoalition() == _coa
+                    and not _unit:inAir() then
+
+                local _tempPoint = _unit:getPoint()
+                
+                
+                local _offsetFriendlyPos = { x = _tempPoint.x, y = _tempPoint.y + 2.0, z = _tempPoint.z }
+
+                if land.isVisible(_offsetPos,_offsetFriendlyPos ) then
+
+            
+                    local unitname = _unit:getName() 
+                    local unittypename = _unit:getTypeName()
+                    local cate     = _unit:getCategory() 
+                    if csar.allowedVehicles[unittypename] ~= nil then 
+                     
+                        if ctld.isVehicle(_unit) then
+                          local _dist = ctld.getDistance(_offsetPos, _offsetFriendlyPos)
+                          if _dist < _maxDistance and _dist > 1 then
+                              table.insert(_unitList,{unit=_unit, dist=_dist})
+                          end
+                        end
+                     
+                    end
+                end
+            end
+        end)
+
+        return true
+    end
+
+    world.searchObjects(Object.Category.UNIT, _volume, _searchfr, _coa)
+
+    local _sort = function( a,b ) return a.dist < b.dist end
+    table.sort(_unitList,_sort)
+    
+    if _unitList[1] ~= nil then
+      return true
+    else
+      return nil
+    end
+    
+    
+   
+   
+end
+function csar.initVehicleCheck( _spawnedGroup )
+     
+     local _woundedGroupName = _spawnedGroup:getName()
+     
+     if csar.woundedGroups[_woundedGroupName] == nil then
+            return
+     end
+     
+ 
+     if csar.CheckNearbyVehicle(_spawnedGroup:getUnit(1)) then
+        --pickup
+        local _woundedLeader = _spawnedGroup:getUnit(1) --csar.woundedGroups[_woundedGroupName][1]
+          
+        Group.destroy(_woundedLeader:getGroup())
+        trigger.action.outTextForCoalition(_spawnedGroup:getCoalition(), "Pilot " .. csar.woundedGroups[_woundedGroupName].desc  .. " Has been picked up by Ground units", 10)
+        
+        csar.woundedGroups[_woundedGroupName] = nil
+        
+     else
+        timer.scheduleFunction(csar.initVehicleCheck, _spawnedGroup, timer.getTime() + 20)
+     end
+end
+
+
