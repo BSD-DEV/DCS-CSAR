@@ -1,5 +1,7 @@
 # DCS-CSAR
 
+![Bsd Logo](https://www.blacksharkden.com/templates/blacksharkden/images/Blacksharkcustom3small.png)
+
 CSAR enhancements:
 
 Mods required:  
@@ -15,10 +17,10 @@ Enhancements done:
 * If helicopter lands, upto 500 mts away from downed pilot, this one will run to get in. Time is relative to the distance whe the extraction helicopter lands
 * Ground Unit Pickup - Any ground unit can pick up downed pilots (Combined arms)
 
-<video src="https://youtu.be/Q6cVd703-o8" width="320" height="200" controls preload></video>
+[![](http://img.youtube.com/vi/Q6cVd703-o8/0.jpg)](http://www.youtube.com/watch?v=Q6cVd703-o8 "BSD-CSAR")
 
 
-https://youtu.be/fn_64MTYGk0
+[![](http://img.youtube.com/vi/fn_64MTYGk0/0.jpg)](http://www.youtube.com/watch?v=fn_64MTYGk0 "BSD-CSAR-Extraction")
 
 
 [BSD] Tupper, [BSD]Fargo.
