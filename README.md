@@ -5,8 +5,8 @@
 CSAR enhancements:
 
 Mods required:  
-https://forums.eagle.ru/showthread.php?t=229788
-https://forums.eagle.ru/showthread.php?t=121659
+* https://forums.eagle.ru/showthread.php?t=229788
+* https://forums.eagle.ru/showthread.php?t=121659
 
 Enhancements done: 
 
