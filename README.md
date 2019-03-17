@@ -15,7 +15,7 @@ Enhancements done:
 * If helicopter lands, upto 500 mts away from downed pilot, this one will run to get in. Time is relative to the distance whe the extraction helicopter lands
 * Ground Unit Pickup - Any ground unit can pick up downed pilots (Combined arms)
 
-https://youtu.be/Q6cVd703-o8
+<video src="https://youtu.be/Q6cVd703-o8" width="320" height="200" controls preload></video>
 
 
 https://youtu.be/fn_64MTYGk0
