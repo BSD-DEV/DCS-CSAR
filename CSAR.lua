@@ -21,8 +21,8 @@ csar.aircraftType["SA342Mistral"] = 2
 csar.aircraftType["SA342Minigun"] = 2
 csar.aircraftType["SA342L"] = 2
 csar.aircraftType["SA342M"] = 2
-csar.aircraftType["UH-1H"] = 6
-csar.aircraftType["Mi-8MT"] = 12
+csar.aircraftType["UH-1H"] = 8
+csar.aircraftType["Mi-8MT"] = 16
 
 csar.bluemash = {
     "FARP1",
