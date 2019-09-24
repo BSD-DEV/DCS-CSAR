@@ -116,6 +116,7 @@ csar.allowedVehicles["Hummer Medic"] = 1
 csar.allowedVehicles["AAV7"] = 1
 
 
+csar.enableSmoke = false
 
 
 
@@ -362,8 +363,7 @@ end
 
 function csar.addCsar(_coalition , _country, _point, _typeName, _unitName, _playerName, _freq)
   
-
-  local _spawnedGroup = csar.spawnGroup( _coalition, _country, _point )
+  local _spawnedGroup = csar.spawnGroup( _coalition, _country, _point, _typeName )
   csar.addSpecialParametersToGroup(_spawnedGroup)
   
   trigger.action.outTextForCoalition(_spawnedGroup:getCoalition(), "MAYDAY MAYDAY! " .. _typeName .. " is down. Get me home bro!", 10)
@@ -828,8 +828,8 @@ csar.addSpecialParametersToGroupDead = function(_spawnedGroup)
   
 end
 
-function csar.spawnGroup( _coalition, _country, _point )
-
+function csar.spawnGroup( _coalition, _country, _point, _typeName )
+    
     local _id = mist.getNextGroupId()
 
     local _groupName = "Downed Pilot #" .. _id
@@ -847,16 +847,29 @@ function csar.spawnGroup( _coalition, _country, _point )
         ["task"] = {},
     }
     
+    local _double = false
+    if _typeName == "SA342Mistral" or _typeName == "SA342Minigun" or _typeName == "SA342L" or _typeName == "SA342M"
+     or _typeName == "UH-1H" or _typeName == "Mi-8MT"  then
+       _double = true
+    end
+  
     _group.category = Group.Category.GROUND;
     if _side == 2 then
         
         if csar.isonWater(_pos ) then
 -- Commenting this until we get new working mods - Tupper
-  --          if bsd_mods_on == true then
-  --            _group.units[1] = csar.createUnit(_pos.x + 50, _pos.z + 50, 120, "liferaft Giz") --"speedboat" )
-  --          else
+            if bsd_mods_on == true then
+              if _double == true then
+              -- Double Raft
+                  _group.units[1] = csar.createUnit(_pos.x + 50, _pos.z + 50, 120, "liferaft_duel")
+              else
+               -- Single Raft
+                 _group.units[1] = csar.createUnit(_pos.x + 50, _pos.z + 50, 120, "liferaft") 
+               
+              end
+            else
               _group.units[1] = csar.createUnit(_pos.x + 50, _pos.z + 50, 120, "speedboat" )
-  --          end
+            end
              _group.category = Group.Category.SHIP;
         else 
         --if bsd_mods_on == true then
@@ -1030,7 +1043,9 @@ function csar.popSmokeForGroup(_woundedGroupName, _woundedLeader)
             _smokecolor = csar.redsmokecolor
         end
 		-- fjw smoke off 
-		--    trigger.action.smoke(_woundedLeader:getPoint(), _smokecolor)
+		    if csar.enableSmoke == true then
+		      trigger.action.smoke(_woundedLeader:getPoint(), _smokecolor)
+		    end
 
         csar.smokeMarkers[_woundedGroupName] = timer.getTime() + 300 -- next smoke time
     end
