@@ -886,7 +886,7 @@ function csar.spawnGroup( _coalition, _country, _point, _typeName )
         _group.units[1] = csar.createUnit(_pos.x + 50, _pos.z + 50, 120, "Infantry AK")
     --    end
     end
-
+  
     
     --_group.country = _deadUnit:getCountry();
     _group.country = _country
